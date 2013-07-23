@@ -39,8 +39,11 @@ class ScitosDashboard(Dashboard):
         
         self._motor_state_sub = rospy.Subscriber('/motor_status', MotorStatus, self.motor_status_callback)
         self._battery_state_sub = rospy.Subscriber('/battery_state', BatteryState, self.battery_callback)
-        self._motor_stale_timer = Timer(0, self._drive.set_stale)
-        self._battery_stale_timer = Timer(0, self._batteries.set_stale)
+
+        self._motor_stale_timer = Timer(0.1, self._drive.set_stale)
+        self._motor_stale_timer.start()
+        self._battery_stale_timer = Timer(0.1, self._batteries.set_stale)
+        self._battery_stale_timer.start()
         
 
     def get_widgets(self):
@@ -49,6 +52,7 @@ class ScitosDashboard(Dashboard):
     def motor_status_callback(self, msg):
         self._motor_stale_timer.cancel()
         self._motor_stale_timer = Timer(1, self._drive.set_stale)
+        self._motor_stale_timer.start()
         self._motorstatus_message = msg
         self._last_motorstatus_message_time = rospy.get_time()
 
@@ -65,6 +69,7 @@ class ScitosDashboard(Dashboard):
     def battery_callback(self,msg):
         self._battery_stale_timer.cancel()
         self._battery_stale_timer = Timer(30, self._batteries.set_stale)
+        self._battery_stale_timer.start()
         self._batteries.set_power_state(msg)
 
     def reset_motorstop_cb(self):

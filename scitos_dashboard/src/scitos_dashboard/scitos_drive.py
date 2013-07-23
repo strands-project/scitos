@@ -1,3 +1,4 @@
+
 from python_qt_binding.QtCore import QSize
 
 from rqt_robot_dashboard.widgets import MenuDashWidget
@@ -14,7 +15,7 @@ class ScitosDrive(MenuDashWidget):
 
         icons = [ok_icon, free_run_icon, free_run_icon_halted, err_icon, stale_icon, hardstop_icon]
         super(ScitosDrive, self).__init__('Drive', icons, icon_paths=[['scitos_dashboard', 'images']])
-        self.update_state(5)
+        self.update_state(4)
 
         self.add_action('Reset Motors Stop', reset_motorstop_cb)
         self.add_action('Toggle Free Run', freerun_cb)
