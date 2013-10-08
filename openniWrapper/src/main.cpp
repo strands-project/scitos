@@ -163,22 +163,22 @@ int main(int argc, char** argv)
 
 
     // initialize ros system
-    ros::init(argc,argv, "openniWrapper");
+    ros::init(argc,argv, "openni_wrapper");
 
 
 
-    DepthCallback aDepthCallback(true,true);
+    DepthCallback aDepthCallback(true,false);
     // Register to new frame
     depth.addNewFrameListener(&aDepthCallback);
 
-    ColorCallback aColorCallback(true,true);
+    ColorCallback aColorCallback(true,false);
     color.addNewFrameListener(&aColorCallback);
 
 
     ros::Rate loop_rate(10);
     // Wait while we're getting frames through the printer
     bool loop = true;
-    while (loop)
+    while (loop && ros::ok())
     {
 //        Sleep(100);
   //      sleep(1);

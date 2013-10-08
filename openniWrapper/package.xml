@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package>
-  <name>openniWrapper</name>
+  <name>openni_wrapper</name>
   <version>0.0.0</version>
   <description>The openniWrapper package</description>
 
