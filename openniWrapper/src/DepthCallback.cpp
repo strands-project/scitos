@@ -30,6 +30,8 @@ DepthCallback::DepthCallback(bool publish_in_ros, bool createCVwin) : publishRos
 
     saveOneFrame = false;
     saveFrameSequence = false;
+
+    m_CameraNamespace = "camera";
 }
 
 void DepthCallback::onNewFrame(VideoStream& stream)
@@ -72,7 +74,8 @@ void DepthCallback::analyzeFrame(const VideoFrameRef& frame)
         aBridgeImage.encoding = "mono16";
         cv::flip(aBridgeImage.image,aBridgeImage.image,1);
         sensor_msgs::ImagePtr rosImage = aBridgeImage.toImageMsg();
-        rosImage.get()->header.frame_id="/camera_depth_optical_frame";
+//        rosImage.get()->header.frame_id="/camera_depth_optical_frame";
+        rosImage.get()->header.frame_id=string("/") + string (m_CameraNamespace)+string("_depth_optical_frame");
         rosImage.get()->encoding="16UC1";
         rosImage.get()->header.stamp = ros::Time::now();
         m_RosPublisher.publish(rosImage);
@@ -86,7 +89,7 @@ void DepthCallback::analyzeFrame(const VideoFrameRef& frame)
         camInfo.P = {{570.3422241210938, 0.0, 314.5, 0.0, 0.0, 570.3422241210938, 235.5, 0.0, 0.0, 0.0, 1.0, 0.0}};
         double D[5] = {0.0,0.0,0.0,0.0,0.0};
         camInfo.D.assign(&D[0], &D[0]+5);
-        camInfo.header.frame_id = "/camera_depth_optical_frame";
+        camInfo.header.frame_id = string("/") + string (m_CameraNamespace)+string("_depth_optical_frame");
         camInfo.header.stamp = rosImage.get()->header.stamp;
         m_RosCameraInfoPublisher.publish(camInfo);
     }

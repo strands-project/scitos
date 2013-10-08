@@ -5,6 +5,7 @@
     <remap from="rgb/camera_info"      to="$(arg camera)/rgb/camera_info" />
     <remap from="depth/image_raw"        to="$(arg camera)/depth/image_raw" />
     <remap from="depth/camera_info"      to="$(arg camera)/depth/camera_info" />
+    <param name="camera"  value="$(arg camera)"/>
   </node>
 </launch>
 

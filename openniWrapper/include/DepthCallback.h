@@ -9,6 +9,7 @@ public:
     void onNewFrame(openni::VideoStream& stream);
     void analyzeFrame(const openni::VideoFrameRef& frame);
     bool        saveOneFrame, saveFrameSequence, publishRosMessage, createCVWindow;
+    std::string m_CameraNamespace;
 private:
     openni::VideoFrameRef m_frame;
     ros::NodeHandle       m_RosNode;

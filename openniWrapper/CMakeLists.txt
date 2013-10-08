@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(openniWrapper)
+project(openni_wrapper)
 
 set(CMAKE_CXX_FLAGS "-g -fPIC -std=c++0x -fpermissive")
 
@@ -31,8 +31,8 @@ set(SRCS
     src/main.cpp
 )
 
-add_executable(openniWrapper ${HDRS} ${SRCS})
+add_executable(openni_wrapper ${HDRS} ${SRCS})
 
- target_link_libraries(openniWrapper
+ target_link_libraries(openni_wrapper
    ${catkin_LIBRARIES} OpenNI2 ${OpenCV_LIBS}
  )

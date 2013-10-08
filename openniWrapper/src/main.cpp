@@ -165,7 +165,7 @@ int main(int argc, char** argv)
     // initialize ros system
     ros::init(argc,argv, "openni_wrapper");
 
-
+    ros::NodeHandle private_node_handle_("~");
 
     DepthCallback aDepthCallback(true,false);
     // Register to new frame
@@ -174,6 +174,13 @@ int main(int argc, char** argv)
     ColorCallback aColorCallback(true,false);
     color.addNewFrameListener(&aColorCallback);
 
+    std::string camNamespace;
+    private_node_handle_.getParam("camera", camNamespace);
+
+    std::cout<<"Camera TF namespace is "<<camNamespace<<std::endl;
+
+    aDepthCallback.m_CameraNamespace = camNamespace;
+    aColorCallback.m_CameraNamespace = camNamespace;
 
     ros::Rate loop_rate(10);
     // Wait while we're getting frames through the printer
