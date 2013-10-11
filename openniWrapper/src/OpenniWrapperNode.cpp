@@ -134,3 +134,18 @@ void OpenniWrapperNode::initializeOpenni()
 
 
 }
+
+void OpenniWrapperNode::terminateOpenni()
+{
+    std::cout<<"Shutting down Openni driver "<<std::endl;
+
+    m_Depth.removeNewFrameListener(&m_DepthCallback);
+    m_Color.removeNewFrameListener(&m_ColorCallback);
+
+    m_Depth.stop();
+    m_Depth.destroy();
+    m_Color.stop();
+    m_Color.destroy();
+    m_Device.close();
+    OpenNI::shutdown();
+}

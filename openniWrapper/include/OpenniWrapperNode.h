@@ -41,6 +41,7 @@ public:
     ~OpenniWrapperNode();
 
     void initializeOpenni();
+    void terminateOpenni();
 
 private:
     ros::NodeHandle m_nodeHandle;

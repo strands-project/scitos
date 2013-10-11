@@ -6,7 +6,7 @@ class OpenniWrapperNodelet: public nodelet::Nodelet
 
 public:
     OpenniWrapperNodelet(){}
-    ~OpenniWrapperNodelet(){}
+    ~OpenniWrapperNodelet();
     virtual void onInit();
     boost::shared_ptr<OpenniWrapperNode> inst_;
 

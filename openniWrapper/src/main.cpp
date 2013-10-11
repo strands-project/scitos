@@ -59,23 +59,7 @@ int main(int argc, char** argv)
         loop_rate.sleep();
     }
 
-//    ros::Rate loop_rate(10);
-//    while (ros::ok())
-//    {
-//        ros::spinOnce();
-//        loop_rate.sleep();
-//    }
+    node.terminateOpenni();
 
-//    depth.removeNewFrameListener(&aDepthCallback);
-//    color.removeNewFrameListener(&aColorCallback);
-
-
-//    depth.stop();
-//    depth.destroy();
-//    color.stop();
-//    color.destroy();
-//    device.close();
-//    OpenNI::shutdown();
-
-//    return 0;
+    return 0;
 }
