@@ -42,10 +42,11 @@
   </node>
 
   <node pkg="nodelet" type="nodelet" name="points"
-        args="load depth_image_proc/point_cloud_xyz $(arg manager)"
+        args="load depth_image_proc/point_cloud_xyz $(arg manager) --no-bond"
         respawn="$(arg respawn)">
     <remap from="image_rect" to="$(arg camera)/depth/image_rect_raw"/>  
     <remap from="camera_info" to="$(arg depth_camera_info)"/>  
+    <remap from="points" to="$(arg camera)/points"/>  
   </node>
 
   <!-- Registration nodelet, projecting depth to RGB camera -->
@@ -64,6 +65,7 @@
 	<remap from="rgb/camera_info" to="$(arg rgb_camera_info)"/>
   	<remap from="rgb/image_rect_color" to="$(arg camera)/rgb/image_rect_color"/>    
         <remap from="depth_registered/image_rect" to="$(arg camera)/depth_registered/image_rect"/>    
+        <remap from="depth_registered/points" to="$(arg camera)/depth_registered/points"/>    
   </node>
 
   <!-- Disparity image -->
