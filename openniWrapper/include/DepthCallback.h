@@ -1,3 +1,6 @@
+#ifndef __DEPTH_CALLBACK
+#define __DEPTH_CALLBACK
+
 #include <stdio.h>
 #include "OpenNI.h"
  #include "ros/ros.h"
@@ -5,7 +8,7 @@
 class DepthCallback : public openni::VideoStream::NewFrameListener
 {
 public:
-    DepthCallback(bool publishRosMessage = true, bool createCVwin = false);
+    DepthCallback(ros::NodeHandle aRosNode,bool publishRosMessage = true, bool createCVwin = false);
     void onNewFrame(openni::VideoStream& stream);
     void analyzeFrame(const openni::VideoFrameRef& frame);
     bool        saveOneFrame, saveFrameSequence, publishRosMessage, createCVWindow;
@@ -17,3 +20,6 @@ private:
     ros::Publisher        m_RosCameraInfoPublisher;
 
 };
+
+
+#endif

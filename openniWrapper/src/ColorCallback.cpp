@@ -11,17 +11,22 @@
 
 #include "sensor_msgs/CameraInfo.h"
 
+#include "OpenNI.h"
+
 using namespace openni;
 using namespace cv;
 using namespace std;
 
-ColorCallback::ColorCallback(bool publish_in_ros, bool createCVwin) : publishRosMessage(publish_in_ros), createCVWindow(createCVwin)
+ColorCallback::ColorCallback(ros::NodeHandle aRosNode, bool publish_in_ros, bool createCVwin) : publishRosMessage(publish_in_ros), createCVWindow(createCVwin)
 {
+
     if (createCVWindow)
     {
         namedWindow( "ColorWindow", CV_WINDOW_NORMAL );
         cvResizeWindow("ColorWindow", 640, 480);
     }
+
+    m_RosNode = aRosNode;
 
 
     m_RosImagePublisher = m_RosNode.advertise<sensor_msgs::Image>("rgb/image_raw", 1000);
@@ -38,6 +43,9 @@ void ColorCallback::onNewFrame(VideoStream& stream)
     stream.readFrame(&m_frame);
 
     analyzeFrame(m_frame);
+
+
+
 }
 
 void ColorCallback::analyzeFrame(const VideoFrameRef& frame)

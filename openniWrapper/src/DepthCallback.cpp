@@ -16,7 +16,7 @@ using namespace openni;
 using namespace cv;
 using namespace std;
 
-DepthCallback::DepthCallback(bool publish_in_ros, bool createCVwin) : publishRosMessage(publish_in_ros), createCVWindow(createCVwin)
+DepthCallback::DepthCallback(ros::NodeHandle aRosNode,bool publish_in_ros, bool createCVwin) : publishRosMessage(publish_in_ros), createCVWindow(createCVwin)
 {
     if (createCVWindow)
     {
@@ -24,6 +24,8 @@ DepthCallback::DepthCallback(bool publish_in_ros, bool createCVwin) : publishRos
         cvResizeWindow("DepthWindow", 640, 480);
         cvMoveWindow("DepthWindow",640,0);
     }
+
+    m_RosNode = aRosNode;
 
     m_RosPublisher = m_RosNode.advertise<sensor_msgs::Image>("depth/image_raw", 1000);
     m_RosCameraInfoPublisher = m_RosNode.advertise<sensor_msgs::CameraInfo>("depth/camera_info", 1000);

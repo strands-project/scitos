@@ -1,12 +1,20 @@
+#ifndef __COLOR_CALLBACK
+#define __COLOR_CALLBACK
+
 #include <stdio.h>
 #include <string>
 #include "OpenNI.h"
 #include "ros/ros.h"
+#include <pthread.h>
+
+#include "DepthCallback.h"
+
+
 
 class ColorCallback : public openni::VideoStream::NewFrameListener
 {
 public:
-    ColorCallback(bool publishRosMessage = true, bool createCVwin = false);
+    ColorCallback(ros::NodeHandle aRosNode, bool publishRosMessage = true, bool createCVwin = false);
     void onNewFrame(openni::VideoStream& stream);
     void analyzeFrame(const openni::VideoFrameRef& frame);
     bool        saveOneFrame, saveFrameSequence,publishRosMessage, createCVWindow;
@@ -17,4 +25,7 @@ private:
     ros::Publisher        m_RosImagePublisher;
     ros::Publisher        m_RosCameraInfoPublisher;
 
+
 };
+
+#endif
