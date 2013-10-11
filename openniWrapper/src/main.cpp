@@ -30,7 +30,7 @@
 
  #include "ros/ros.h"
 
-#include "openniWrapperNode.h"
+#include "OpenniWrapperNode.h"
 
 using namespace openni;
 using namespace std;

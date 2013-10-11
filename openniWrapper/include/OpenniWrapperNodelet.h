@@ -1,5 +1,5 @@
 #include <nodelet/nodelet.h>
-#include "openniWrapperNode.h"
+#include "OpenniWrapperNode.h"
 
 class OpenniWrapperNodelet: public nodelet::Nodelet
 {

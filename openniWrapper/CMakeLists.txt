@@ -3,11 +3,11 @@ project(openni_wrapper)
 
 set(CMAKE_CXX_FLAGS "-g -fPIC -std=c++0x -fpermissive")
 
-find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs cv_bridge)
+find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs cv_bridge nodelet class_loader)
 find_package( OpenCV REQUIRED )
 find_package(cv_bridge REQUIRED)
 
-set(OPENNI2_DIR /home/rares/code/OpenNI-Linux-x64-2.2/)
+set(OPENNI2_DIR 3rd_party/OpenNI-Linux-x64-2.2/)
 link_directories(${OPENNI2_DIR}/Redist)
 include_directories(${OPENNI2_DIR}/Include)
 
@@ -21,18 +21,28 @@ include_directories(include
 
 set(HDRS
     include/ColorCallback.h
+    include/OpenniWrapperNodelet.h
     include/DepthCallback.h
     include/OniSampleUtilities.h
+    include/OpenniWrapperNode.h
 )
 
 set(SRCS
     src/ColorCallback.cpp
+    src/OpenniWrapperNodelet.cpp
     src/DepthCallback.cpp
+    src/OpenniWrapperNode.cpp
     src/main.cpp
 )
 
 add_executable(openni_wrapper ${HDRS} ${SRCS})
 
+add_library(openni_wrapper_lib  ${HDRS} ${SRCS})
+
  target_link_libraries(openni_wrapper
+   ${catkin_LIBRARIES} OpenNI2 ${OpenCV_LIBS}
+ )
+
+ target_link_libraries(openni_wrapper_lib
    ${catkin_LIBRARIES} OpenNI2 ${OpenCV_LIBS}
  )

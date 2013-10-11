@@ -1,6 +1,6 @@
 #include <nodelet/nodelet.h>
 #include <pluginlib/class_list_macros.h>
-#include "openniWrapperNode.h"
+#include "OpenniWrapperNode.h"
 #include "OpenniWrapperNodelet.h"
 
 
