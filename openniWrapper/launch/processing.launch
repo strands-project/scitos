@@ -39,6 +39,7 @@
         respawn="$(arg respawn)">
     <remap from="image_raw" to="$(arg camera)/depth/image_rect" />
     <remap from="image"     to="$(arg camera)/depth/image_rect_meters" />
+    <remap from="image_rect" to="$(arg camera)/depth/image_rect"/>
   </node>
 
   <node pkg="nodelet" type="nodelet" name="points" 
