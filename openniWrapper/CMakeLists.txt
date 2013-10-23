@@ -7,9 +7,13 @@ find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs cv_bridge nodelet 
 find_package( OpenCV REQUIRED )
 find_package(cv_bridge REQUIRED)
 
-set(OPENNI2_DIR 3rd_party/OpenNI-Linux-x64-2.2/)
-link_directories(${OPENNI2_DIR}/Redist)
-include_directories(${OPENNI2_DIR}/Include)
+set(OPENNI2.2_DIR ../OpenNI2/)
+link_directories(${OPENNI2.2_DIR}/Bin/x64-Release)
+include_directories(${OPENNI2.2_DIR}/Include)
+
+
+execute_process(COMMAND make WORKING_DIRECTORY ${OPENNI2.2_DIR})
+
 
 catkin_package(
    INCLUDE_DIRS include

@@ -1,0 +1,3 @@
+[submodule "OpenNI2"]
+	path = OpenNI2
+	url = git://github.com/OpenNI/OpenNI2.git
