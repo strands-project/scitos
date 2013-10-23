@@ -8,12 +8,9 @@ find_package( OpenCV REQUIRED )
 find_package(cv_bridge REQUIRED)
 
 set(OPENNI2.2_DIR ../OpenNI2/)
+set(OPENNI2.2_BUILD_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../OpenNI2/)
 link_directories(${OPENNI2.2_DIR}/Bin/x64-Release)
 include_directories(${OPENNI2.2_DIR}/Include)
-
-
-execute_process(COMMAND make WORKING_DIRECTORY ${OPENNI2.2_DIR})
-
 
 catkin_package(
    INCLUDE_DIRS include
@@ -41,12 +38,18 @@ set(SRCS
 
 add_executable(openni_wrapper ${HDRS} ${SRCS})
 
-add_library(openni_wrapper_lib  ${HDRS} ${SRCS})
+#add_library(openni_wrapper_lib  ${HDRS} ${SRCS})
 
  target_link_libraries(openni_wrapper
    ${catkin_LIBRARIES} OpenNI2 ${OpenCV_LIBS}
  )
 
- target_link_libraries(openni_wrapper_lib
-   ${catkin_LIBRARIES} OpenNI2 ${OpenCV_LIBS}
- )
+# target_link_libraries(openni_wrapper_lib
+#   ${catkin_LIBRARIES} OpenNI2 ${OpenCV_LIBS}
+# )
+
+add_custom_command(TARGET openni_wrapper PRE_LINK COMMAND make ARGS -j2 WORKING_DIRECTORY ${OPENNI2.2_BUILD_DIR} COMMENT "Compiling Openni2.2. This could take some time.")
+#add_custom_command(TARGET openni_wrapper_lib PRE_LINK COMMAND make ARGS -j2 WORKING_DIRECTORY ${OPENNI2.2_BUILD_DIR})
+
+
+execute_process(COMMAND make WORKING_DIRECTORY ${OPENNI2.2_DIR})
