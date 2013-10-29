@@ -37,18 +37,18 @@ set(SRCS
 
 add_executable(openni_wrapper ${HDRS} ${SRCS})
 
-#add_library(openni_wrapper_lib  ${HDRS} ${SRCS})
+add_library(openni_wrapper_lib  ${HDRS} ${SRCS})
 
  target_link_libraries(openni_wrapper
    ${catkin_LIBRARIES} OpenNI2 ${OpenCV_LIBS}
  )
 
-# target_link_libraries(openni_wrapper_lib
-#   ${catkin_LIBRARIES} OpenNI2 ${OpenCV_LIBS}
-# )
+ target_link_libraries(openni_wrapper_lib
+   ${catkin_LIBRARIES} OpenNI2 ${OpenCV_LIBS}
+ )
 
 add_custom_command(TARGET openni_wrapper PRE_LINK COMMAND make ARGS -j2 WORKING_DIRECTORY ${OPENNI2.2_BUILD_DIR} COMMENT "Compiling Openni2.2. This could take some time.")
-#add_custom_command(TARGET openni_wrapper_lib PRE_LINK COMMAND make ARGS -j2 WORKING_DIRECTORY ${OPENNI2.2_BUILD_DIR})
+add_custom_command(TARGET openni_wrapper_lib PRE_LINK COMMAND make ARGS -j2 WORKING_DIRECTORY ${OPENNI2.2_BUILD_DIR})
 
 
 execute_process(COMMAND make WORKING_DIRECTORY ${OPENNI2.2_DIR})
