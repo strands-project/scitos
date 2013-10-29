@@ -24,7 +24,6 @@ set(HDRS
     include/ColorCallback.h
     include/OpenniWrapperNodelet.h
     include/DepthCallback.h
-    include/OniSampleUtilities.h
     include/OpenniWrapperNode.h
 )
 
