@@ -8,7 +8,7 @@
 class DepthCallback : public openni::VideoStream::NewFrameListener
 {
 public:
-    DepthCallback(ros::NodeHandle aRosNode,bool publishRosMessage = true, bool createCVwin = false);
+    DepthCallback(ros::NodeHandle aRosNode, std::string camNamespace="camera", bool publishRosMessage = true, bool createCVwin = false);
     void onNewFrame(openni::VideoStream& stream);
     void analyzeFrame(const openni::VideoFrameRef& frame);
     bool        saveOneFrame, saveFrameSequence, publishRosMessage, createCVWindow;

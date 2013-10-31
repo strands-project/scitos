@@ -1,23 +1,14 @@
 <launch>
-  <arg name="camera"   		default="camera" />
-<!--  
-  <node pkg="openni_wrapper" type="openni_wrapper" name="openni_wrapper" output="screen">
-    <remap from="rgb/image_raw"        to="$(arg camera)/rgb/image_raw" />
-    <remap from="rgb/camera_info"      to="$(arg camera)/rgb/camera_info" />
-    <remap from="depth/image_raw"        to="$(arg camera)/depth/image_raw" />
-    <remap from="depth/camera_info"      to="$(arg camera)/depth/camera_info" />
-    <param name="camera"  value="$(arg camera)"/>
-  </node>
--->
-
+  <arg name="camera2"  		default="camera2" />
+  <arg name="camera"  		default="camera" />
+  <arg name="inverted"  	default="no" />
   <node pkg="nodelet" type="nodelet" name="standalone_nodelet"  args="manager" output="screen"/>
 
   <node pkg="nodelet" type="nodelet" name="OpenniWrapperNodelet" args="load openni_wrapper/OpenniWrapperNodelet standalone_nodelet" output="screen">
-    <remap from="rgb/image_raw"        to="$(arg camera)/rgb/image_raw" />
-    <remap from="rgb/camera_info"      to="$(arg camera)/rgb/camera_info" />
-    <remap from="depth/image_raw"        to="$(arg camera)/depth/image_raw" />
-    <remap from="depth/camera_info"      to="$(arg camera)/depth/camera_info" />
     <param name="camera"  value="$(arg camera)"/>
+    <param name="camera2"  value="$(arg camera2)"/>
+    <param name="inverted"  value="$(arg inverted)"/>
+
   </node>     
 
 </launch>

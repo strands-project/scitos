@@ -48,14 +48,17 @@ private:
     ros::NodeHandle m_privateNodeHandle;
 
     OpenNIDeviceListener m_devicePrinter;
-    openni::Device m_Device;
-    openni::VideoStream m_Color;
-    openni::VideoStream m_Depth;
-    ColorCallback       m_ColorCallback;
-    DepthCallback       m_DepthCallback;
+    std::vector<openni::Device*> m_vDevice;
+    std::vector<openni::VideoStream*> m_vColor;
+    std::vector<openni::VideoStream*> m_vDepth;
+    std::vector<ColorCallback*>       m_vColorCallback;
+    std::vector<DepthCallback*>       m_vDepthCallback;
+
+    std::vector<std::string>         m_vCameraNamespace;
+    int                              m_DevicesDefined;
 
 
-
+    const static int          openni_wrapper_max_devices;
 
 };
 

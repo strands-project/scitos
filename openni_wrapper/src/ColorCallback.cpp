@@ -17,7 +17,7 @@ using namespace openni;
 using namespace cv;
 using namespace std;
 
-ColorCallback::ColorCallback(ros::NodeHandle aRosNode, bool publish_in_ros, bool createCVwin) : publishRosMessage(publish_in_ros), createCVWindow(createCVwin)
+ColorCallback::ColorCallback(ros::NodeHandle aRosNode, std::string camNamespace, bool publish_in_ros, bool createCVwin) : publishRosMessage(publish_in_ros), createCVWindow(createCVwin)
 {
 
     if (createCVWindow)
@@ -26,16 +26,18 @@ ColorCallback::ColorCallback(ros::NodeHandle aRosNode, bool publish_in_ros, bool
         cvResizeWindow("ColorWindow", 640, 480);
     }
 
+    m_CameraNamespace = camNamespace;
+
     m_RosNode = aRosNode;
 
 
-    m_RosImagePublisher = m_RosNode.advertise<sensor_msgs::Image>("rgb/image_raw", 1000);
-    m_RosCameraInfoPublisher = m_RosNode.advertise<sensor_msgs::CameraInfo>("rgb/camera_info", 1000);
+    m_RosImagePublisher = m_RosNode.advertise<sensor_msgs::Image>(string("/") + string (m_CameraNamespace)+string("/")+"rgb/image_raw", 1000);
+    m_RosCameraInfoPublisher = m_RosNode.advertise<sensor_msgs::CameraInfo>(string("/") + string (m_CameraNamespace)+string("/")+"rgb/camera_info", 1000);
 
     saveOneFrame = false;
     saveFrameSequence = false;
 
-    m_CameraNamespace = "camera";
+
 }
 
 void ColorCallback::onNewFrame(VideoStream& stream)
