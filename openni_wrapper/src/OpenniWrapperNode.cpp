@@ -29,8 +29,11 @@ OpenniWrapperNode::OpenniWrapperNode(ros::NodeHandle nh, ros::NodeHandle private
         bool found = m_privateNodeHandle.getParam(deviceNameStream.str(),deviceName);
         if (found)
         {
-            m_DevicesDefined++;
-            m_vCameraNamespace.push_back(deviceName);
+            if (deviceName != "false")
+            {
+                m_DevicesDefined++;
+                m_vCameraNamespace.push_back(deviceName);
+            }
         } else {
 //            break;
         }

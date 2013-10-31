@@ -1,8 +1,12 @@
 <launch>
-  <arg name="camera"   		default="camera" />
   <arg name="manager" 		default="manager" />
   <arg name="inverted" 		default="no" />
-  <arg name="camera2" default="camera2"/>
+  <arg name="with_camera"       default="true"/>
+  <arg name="with_camera2"      default="true"/>
+
+  <arg name="camera"   		default="camera" />
+  <arg name="camera2"           default="camera2"/>
+  
 
   <arg name="publish_tf" default="true" />
   <!-- Load reasonable defaults for the relative pose between cameras -->
@@ -13,12 +17,14 @@
   </include>  
 
   <include file="$(find openni_wrapper)/launch/device.launch">
-    <arg name="camera"  value="$(arg camera)"/>
-    <arg name="camera2"  value="$(arg camera2)"/>
+    <arg name="camera"  value="$(arg camera)" if="$(arg with_camera)"/>
+    <arg name="camera"  value="false" unless="$(arg with_camera)"/>
+    <arg name="camera2"  value="$(arg camera2)" if="$(arg with_camera2)"/>
+    <arg name="camera2"  value="false" unless="$(arg with_camera2)"/>
     <arg name="inverted"  value="$(arg inverted)"/>
   </include>
 
-  <include file="$(find openni_wrapper)/launch/processing.launch">
+  <include file="$(find openni_wrapper)/launch/processing.launch" if="$(arg with_camera)">
     <arg name="camera" value="$(arg camera)" /> 
     <arg name="manager" value="$(arg manager)" /> 
     <arg name="rgb" value="$(arg camera)/rgb/image_raw" /> 
@@ -28,7 +34,7 @@
   </include>
 
 
-  <include file="$(find openni_wrapper)/launch/processing.launch">
+  <include file="$(find openni_wrapper)/launch/processing.launch" if="$(arg with_camera2)">
     <arg name="camera" value="$(arg camera2)" /> 
     <arg name="manager" value="$(arg manager)_$(arg camera)" /> 
     <arg name="rgb" value="$(arg camera2)/rgb/image_raw" /> 
