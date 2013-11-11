@@ -47,8 +47,10 @@ add_library(openni_wrapper_lib  ${HDRS} ${SRCS})
    ${catkin_LIBRARIES} OpenNI2 ${OpenCV_LIBS}
  )
 
-add_custom_command(TARGET openni_wrapper PRE_LINK COMMAND make ARGS -j2 WORKING_DIRECTORY ${OPENNI2.2_BUILD_DIR} COMMENT "Compiling Openni2.2. This could take some time.")
-add_custom_command(TARGET openni_wrapper_lib PRE_LINK COMMAND make ARGS -j2 WORKING_DIRECTORY ${OPENNI2.2_BUILD_DIR})
+set(TARGETS_NAMES openni_wrapper openni_wrapper_lib)
+
+add_custom_command(TARGET ${TARGET_NAMES} PRE_LINK COMMAND make ARGS -j2 WORKING_DIRECTORY ${OPENNI2.2_BUILD_DIR} COMMENT "Compiling Openni2.2. This could take some time.")
+#add_custom_command(TARGET openni_wrapper_lib PRE_LINK COMMAND make ARGS -j2 WORKING_DIRECTORY ${OPENNI2.2_BUILD_DIR})
 
 
 execute_process(COMMAND make WORKING_DIRECTORY ${OPENNI2.2_DIR})
