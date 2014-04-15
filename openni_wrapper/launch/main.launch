@@ -7,7 +7,7 @@
   <arg name="camera"   		default="camera" />
   <arg name="camera2"           default="camera2"/>
 
-  <arg name="publish_tf" default="true" />
+  <arg name="publish_tf" default="false" />
   <!-- Load reasonable defaults for the relative pose between cameras -->
   <include if="$(arg publish_tf)"
            file="$(find openni_wrapper)/launch/kinect_frames.launch">
