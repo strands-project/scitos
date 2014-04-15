@@ -26,7 +26,7 @@
 
   <include file="$(find openni_wrapper)/launch/processing.launch" if="$(arg with_camera)">
     <arg name="camera" value="$(arg camera)" /> 
-    <arg name="manager" value="$(arg manager)" /> 
+    <arg name="manager" value="$(arg manager)_$(arg camera)" /> 
     <arg name="rgb" value="$(arg camera)/rgb/image_raw" /> 
     <arg name="depth" value="$(arg camera)/depth/image_raw" />
     <arg name="rgb_camera_info" value="$(arg camera)/rgb/camera_info" /> 
@@ -36,7 +36,7 @@
 
   <include file="$(find openni_wrapper)/launch/processing.launch" if="$(arg with_camera2)">
     <arg name="camera" value="$(arg camera2)" /> 
-    <arg name="manager" value="$(arg manager)_$(arg camera)" /> 
+    <arg name="manager" value="$(arg manager)_$(arg camera2)" /> 
     <arg name="rgb" value="$(arg camera2)/rgb/image_raw" /> 
     <arg name="depth" value="$(arg camera2)/depth/image_raw" />
     <arg name="rgb_camera_info" value="$(arg camera2)/rgb/camera_info" /> 

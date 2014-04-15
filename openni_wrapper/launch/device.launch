@@ -2,13 +2,14 @@
   <arg name="camera2"  		default="camera2" />
   <arg name="camera"  		default="camera" />
   <arg name="inverted"  	default="no" />
-  <node pkg="nodelet" type="nodelet" name="standalone_nodelet"  args="manager" output="screen"/>
 
-  <node pkg="nodelet" type="nodelet" name="OpenniWrapperNodelet" args="load openni_wrapper/OpenniWrapperNodelet standalone_nodelet" output="screen">
+
+    <node pkg="nodelet" type="nodelet" name="standalone_nodelet_$(optenv STRANDS_COMPUTER_NAME)"  args="manager" output="screen"/>
+
+  <node pkg="nodelet" type="nodelet" name="OpenniWrapperNodelet_$(optenv STRANDS_COMPUTER_NAME)" args="load openni_wrapper/OpenniWrapperNodelet standalone_nodelet" output="screen">
     <param name="camera"  value="$(arg camera)"/>
     <param name="camera2"  value="$(arg camera2)"/>
     <param name="inverted"  value="$(arg inverted)"/>
-
   </node>     
 
 </launch>
