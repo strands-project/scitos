@@ -8,7 +8,7 @@
 
   <!-- Nodelet manager for this pipeline -->
   <node pkg="nodelet" type="nodelet" args="manager"
-        name="$(arg manager)" output="screen"/>
+        name="$(arg manager)_$(arg camera)" output="screen"/>
 
 
  <!-- RGB processing -->
