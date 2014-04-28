@@ -1,9 +1,10 @@
 <launch>
   <arg name="camera"  		default="camera" />
+  <arg name="machine"/>
 
-   <node pkg="nodelet" type="nodelet" name="standalone_nodelet_$(arg camera)"  args="manager" output="screen"/>
+   <node machine="$(arg machine)" pkg="nodelet" type="nodelet" name="standalone_nodelet_$(arg camera)"  args="manager" output="screen"/>
 
-  <node pkg="nodelet" type="nodelet" name="OpenniWrapperNodelet_$(arg camera)" args="load openni_wrapper/OpenniWrapperNodelet standalone_nodelet_$(arg camera)" output="screen">
+  <node machine="$(arg machine)" pkg="nodelet" type="nodelet" name="OpenniWrapperNodelet_$(arg camera)" args="load openni_wrapper/OpenniWrapperNodelet standalone_nodelet_$(arg camera)" output="screen">
     <param name="camera"  value="$(arg camera)"/>
   </node>     
 
