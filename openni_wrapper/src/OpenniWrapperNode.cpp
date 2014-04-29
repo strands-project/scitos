@@ -6,7 +6,7 @@ using namespace openni;
 using namespace std;
 using namespace cv;
 
-const int OpenniWrapperNode::openni_wrapper_max_devices = 10;
+const int OpenniWrapperNode::openni_wrapper_max_devices = 1;
 
 OpenniWrapperNode::OpenniWrapperNode(ros::NodeHandle nh, ros::NodeHandle private_nh)
 //    m_ColorCallback(nh,"rgb/image_raw","rgb/camera_info", true, false),
@@ -43,30 +43,6 @@ OpenniWrapperNode::OpenniWrapperNode(ros::NodeHandle nh, ros::NodeHandle private
     {
         cout<<"---------------------------- No devices defined. Exitting.-------------------------------"<<endl;
         exit(-1);
-    }
-
-    string inverted;
-    bool found = m_privateNodeHandle.getParam("inverted",inverted);
-    if (found)
-    {
-        if (inverted == "yes")
-        {
-            if (m_vCameraNamespace.size()>1)
-            {
-                cout<<"Namsespace for devices 1 and 2 will be swapped."<<endl;
-                string temp = m_vCameraNamespace[0];
-                m_vCameraNamespace[0] = m_vCameraNamespace[1];
-                m_vCameraNamespace[1] = temp;
-            } else{
-                cout<<"Inverted argument passed but less than 2 devices detected."<<endl;
-            }
-
-
-        } else {
-            cout<<"Namsespace for devices 1 and 2 will NOT be swapped."<<endl;
-        }
-    } else {
-        cout<<"Parameter inverted not defined."<<endl;
     }
 
 
