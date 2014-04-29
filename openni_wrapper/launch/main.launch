@@ -2,9 +2,10 @@
   <arg name="manager" 		default="manager" />
   <arg name="camera"   		default="camera" />
   <arg name="machine"   	default="localhost" />
+  <arg name="user"   	default="" />
   <arg name="publish_tf" default="false" />
  
-  <machine name="$(arg machine)" address="$(arg machine)" env-loader="/opt/ros/hydro/setup.bash"/>
+  <machine name="$(arg machine)" address="$(arg machine)" env-loader="/opt/ros/hydro/env.sh" user="$(arg user)"/>
 
   <!-- Load reasonable defaults for the relative pose between cameras -->
   <include if="$(arg publish_tf)"
