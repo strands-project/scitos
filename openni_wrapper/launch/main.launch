@@ -17,6 +17,7 @@
   <include file="$(find openni_wrapper)/launch/device.launch">
     <arg name="camera"  value="$(arg camera)"/>
     <arg name="machine"  value="$(arg machine)"/>
+    <arg name="manager" value="$(arg manager)_$(arg camera)" /> 
   </include>
 
 
