@@ -75,9 +75,9 @@
         args="load depth_image_proc/disparity $(arg manager) --no-bond"
         respawn="$(arg respawn)">
     <!-- Use raw image for efficiency -->
-    <remap from="left/image_rect" to="$(arg camera)/depth/image_rect" />
-    <remap from="right/camera_info" to="$(arg rgb_camera_info)" />
-    <remap from="left/disparity" to="depth/disparity" />
+    <remap from="left" to="$(arg camera)/depth" />
+    <remap from="right" to="$(arg camera)/depth" />
+    <remap from="left/disparity" to="$(arg camera)/depth/disparity" />
 
     <param name="min_range" value="0.5" />
     <param name="max_range" value="4.0" />

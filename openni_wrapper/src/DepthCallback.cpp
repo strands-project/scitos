@@ -90,7 +90,7 @@ void DepthCallback::analyzeFrame(const VideoFrameRef& frame)
         camInfo.distortion_model = "plumb_bob";
         camInfo.K = {{570.3422241210938, 0.0, 314.5, 0.0, 570.3422241210938, 235.5, 0.0, 0.0, 1.0}};
         camInfo.R = {{1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0}};
-        camInfo.P = {{570.3422241210938, 0.0, 314.5, 0.0, 0.0, 570.3422241210938, 235.5, 0.0, 0.0, 0.0, 1.0, 0.0}};
+        camInfo.P = {{570.3422241210938, 0.0, 314.5, -21.387834254417157, 0.0, 570.3422241210938, 235.5, 0.0, 0.0, 0.0, 1.0, 0.0}};
         double D[5] = {0.0,0.0,0.0,0.0,0.0};
         camInfo.D.assign(&D[0], &D[0]+5);
         camInfo.header.frame_id = string("/") + string (m_CameraNamespace)+string("_depth_optical_frame");
