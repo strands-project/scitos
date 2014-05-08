@@ -4,7 +4,10 @@
 
 	<machine name="$(arg machine)" address="$(arg machine)" env-loader="/opt/strands/strands_catkin_ws/devel/env.sh" user="$(arg user)" default="true"/>
 
-	<node pkg="diagnostic_aggregator" type="aggregator_node" name="diagnostic_aggregator" >
-		<rosparam command="load" file="$(find scitos_bringup)/launch/diagnostics.yaml" />
-	</node>
+	<!-- Datacentre -->
+	<include file="$(find ros_datacentre)/launch/datacentre.launch" >
+	    <arg name="machine"  value="$(arg machine)"/>
+	    <arg name="user"  value="$(arg user)"/>
+	</include>
+
 </launch>
