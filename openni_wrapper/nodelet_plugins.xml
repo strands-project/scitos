@@ -1,7 +1,0 @@
-<library path="lib/libopenni_wrapper_lib">
-  <class name="openni_wrapper/OpenniWrapperNodelet" type="OpenniWrapperNodelet" base_class_type="nodelet::Nodelet">
-  <description>
-  Openni wrapper nodelet.
-  </description>
-  </class>
-</library>
